@@ -1,6 +1,7 @@
 *.properties
 /nbproject/*
 nbproject/*
-nbproject/
+nbproject/*.properties
+nbproject/*.xml
 build.xml
 manifest.mf
