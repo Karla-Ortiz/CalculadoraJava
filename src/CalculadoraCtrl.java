@@ -13,7 +13,7 @@ import java.io.File;
  */
 public class CalculadoraCtrl {
 
-    private List<String> historial = new LinkedList<>();
+    private static List<String> historial = new LinkedList<>();
 
     /**
      * Opera la operación que se quiere operar xxxddd
@@ -23,7 +23,7 @@ public class CalculadoraCtrl {
      * @param operador operacion a ejecutar
      * @return resultado
      */
-    public Double operar(Double num1, Double num2, String operador) {
+    public static Double operar(Double num1, Double num2, String operador) {
         //se validan posibles nulos
         num1 = notNull(num1);
         num2 = notNull(num2);
@@ -43,8 +43,6 @@ public class CalculadoraCtrl {
                 return num1 / num2;
             case "*":
                 return num1 * num2;
-            case "%":
-                return num1 % num2;
         }
         return 0.0;
     }
@@ -54,30 +52,30 @@ public class CalculadoraCtrl {
      *
      * @return
      */
-    public List<String> getHistorial() {
-        return this.historial;
+    public static List<String> getHistorial() {
+        return historial;
     }
 
     /**
      * Inserta una nueva operacion al historial y la escribe en el archivo de
      * texto
      */
-    public void reset() {
+    public static void reset() {
         addHistorial("NUEVO");
     }
 
     /**
      * limpia el historial y elimina el archivo txtx
      */
-    public void cleanHistorial() {
-        this.historial.clear();
-        new File("historial.txt").delete();
+    public static void cleanHistorial() {
+        historial.clear();
+        new File("C:\\Users\\Gabriela}\\Desktop\\ArchivosGaby\\UMGGABY\\4to.semestre\\Progra2\\Actividad 3\\historial.txt").delete();
 
     }
 
     /////////-------------------------METODOS PRIVADOS -------------------------------////
-    private void escribirTxt(String texto) {
-        try (FileWriter fw = new FileWriter("historial.txt", true);
+    private static void escribirTxt(String texto) {
+        try (FileWriter fw = new FileWriter("C:\\Users\\Gabriela}\\Desktop\\ArchivosGaby\\UMGGABY\\4to.semestre\\Progra2\\Actividad 3\\historial.txt", true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw)) {
             out.println(texto);
@@ -86,16 +84,16 @@ public class CalculadoraCtrl {
         }
     }
 
-    private void addHistorial(String op) {
+    private static void addHistorial(String op) {
         historial.add(notNull(op));
         escribirTxt(notNull(op));
     }
 
-    private Double notNull(Double val) {
+    private static Double notNull(Double val) {
         return val != null ? val : 0.0;
     }
 
-    private String notNull(String var) {
+    private static String notNull(String var) {
         return var != null ? var.trim() : "";
     }
 

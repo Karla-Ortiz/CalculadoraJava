@@ -5,3 +5,5 @@ nbproject/*.properties
 nbproject/*.xml
 build.xml
 manifest.mf
+/build/
+/dist/
